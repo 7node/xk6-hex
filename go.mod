@@ -1,4 +1,4 @@
-module github.com/7node/xk6-hex
+module github.com/7node/xk6-helper
 
 go 1.23.2
 
