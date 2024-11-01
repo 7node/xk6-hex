@@ -16,7 +16,7 @@ type Hex struct {
 }
 
 // Decode returns the decoded string.
-func (c *Hex) Decode(hex string) []byte {
+func (c *Hex) HexDecode(hex string) []byte {
 	decoded, err := goHex.DecodeString(hex)
 	if err != nil {
 		return nil
