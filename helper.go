@@ -26,3 +26,29 @@ func (c *Module) HexDecode(hex string) []byte {
 	}
 	return decoded
 }
+
+func (c *Module) HexEncode(data []byte) string {
+	return goHex.EncodeToString(data)
+}
+
+func (c *Module) EncodeMessage(payload, encKey, signKey string) []byte {
+	encKeyBytes := c.HexDecode(encKey)
+	signKeyBytes := c.HexDecode(signKey)
+
+	encoded, err := Parser.Encoder.Encode([]byte(payload), encKeyBytes, signKeyBytes)
+	if err != nil {
+		return nil
+	}
+	return encoded
+}
+
+func (c *Module) DecodeMessage(payload, encKey, signKey string) []byte {
+	encKeyBytes := c.HexDecode(encKey)
+	signKeyBytes := c.HexDecode(signKey)
+
+	decoded, err := Parser.Decoder.Decode([]byte(payload), encKeyBytes, signKeyBytes)
+	if err != nil {
+		return nil
+	}
+	return decoded
+}
